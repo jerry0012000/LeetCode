@@ -1,0 +1,51 @@
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        String commonPrefix = "";
+        int minLength = 0;
+        int tempLength = 200;
+        int minIndex = 0;
+        for (int i=0; i < strs.length; i++) {
+            if (strs[i].length() < tempLength) {
+                tempLength = strs[i].length();
+                minIndex = i;
+            }
+        }
+        if (tempLength == 0) {
+            return commonPrefix; // return "";
+        }
+        // for (int k=0; k < tempLength; k++) {
+        //     for (int j=k+1; j <= tempLength; j++) {
+        //         boolean contains = true;
+        //         for (int l=0; l < strs.length; l++) {
+        //             contains = true;
+        //             contains = contains & (strs[l].contains(strs[minIndex].substring(k,j)));
+        //             // System.out.println(contains);
+        //         }
+        //         if (contains) {
+        //             if (minLength < (j-k)){
+        //                 minLength = j-k;
+        //                 commonPrefix = strs[minIndex].substring(k,j);
+        //             }   
+        //         }
+        //     }
+        // }
+        for (int j=1; j <= tempLength; j++) {
+            boolean contains = true;
+            for (int l=0; l < strs.length; l++) {
+                contains = true;
+                contains = contains & (strs[l].substring(0,j).equals((strs[minIndex].substring(0,j))));
+                // System.out.println(strs[l].substring(0,j) + " " + strs[minIndex].substring(0,j) + " " + contains);
+                if (!contains) {
+                    break;
+                }
+            }
+            if (contains) {
+                if (minLength < j){
+                    minLength = j;
+                    commonPrefix = strs[minIndex].substring(0,j);
+                }   
+            }
+        }
+        return commonPrefix;
+    }
+}
