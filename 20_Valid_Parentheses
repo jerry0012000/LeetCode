@@ -1,0 +1,160 @@
+class Solution {
+    public boolean isValid(String s) {
+        // if (s.contains("()") | s.contains("[]") | s.contains("{}")) {
+        //     return true;
+        // }
+        // else{
+        //     return false;
+        // }
+        if (s == "") {
+            return true;
+        }
+        if (s.charAt(0) == ')' | s.charAt(0) == ']' | s.charAt(0) == '}') {
+            return false;
+        }
+        //先判断括号数量是否正确
+        int smallCount1 = 0;
+        int smallCount2 = 0;
+        int mediumCount1 = 0;
+        int mediumCount2 = 0;
+        int largeCount1 = 0;
+        int largeCount2 = 0;
+        for (int j=0; j < s.length();j++) {
+            if (s.charAt(j) == '(') {
+                smallCount1 ++;
+            }
+            if (s.charAt(j) == ')') {
+                smallCount2 ++;
+            }
+            if (s.charAt(j) == '[') {
+                mediumCount1 ++;
+            }
+            if (s.charAt(j) == ']') {
+                mediumCount2 ++;
+            }
+            if (s.charAt(j) == '{') {
+                largeCount1 ++;
+            }
+            if (s.charAt(j) == '}') {
+                largeCount2 ++;
+            }
+        }
+        if (smallCount1 != smallCount2 | mediumCount1 != mediumCount2 | largeCount1 != largeCount2) {
+            return false;
+        }
+        //能到这里说明括号数量正确
+        // boolean smallClosed = true;
+        // boolean mediumClosed = true;
+        // boolean largeClosed = true;
+        // int smallIndex = -1;
+        // int mediumIndex = -1;
+        // int largeIndex = -1;
+        // for (int i=0; i< s.length();i++) {
+        //     if (s.charAt(i) == '(' & smallClosed == true) {
+        //         smallClosed = false;
+        //         smallIndex = i;
+        //     }
+        //     if (s.charAt(i) == '[' & mediumClosed == true) {
+        //         mediumClosed = false;
+        //         mediumIndex = i;
+        //     }
+        //     if (s.charAt(i) == '{' & largeClosed == true) {
+        //         largeClosed = false;
+        //         largeIndex = i;
+        //     }
+        //     if (s.charAt(i) == ')' & smallIndex != -1) {
+        //         if ((i-smallIndex)%2 != 1) {
+        //             //如果里面只包了单数个字符那肯定不合格
+        //             return false;
+        //         }
+        //         if (smallClosed == false) {
+        //             if (smallIndex == i-1) {
+        //                 //两个括号在一起
+        //                 smallClosed = true;
+        //                 smallIndex = -1;
+        //             }
+        //             else {//两个括号不在一起，判断是不是大包小
+        //                 System.out.println("mediumClosed: " + mediumClosed);
+        //                 System.out.println("largeClosed: " + largeClosed);
+        //                 if (mediumClosed == false | largeClosed == false & i == s.length() - 1) {
+        //                     return false;
+        //                 }
+        //                 smallClosed = true;
+        //                 smallIndex = -1;
+        //             }
+        //         }
+        //         else {
+        //             return false;
+        //         }
+        //     }
+        //     if (s.charAt(i) == ']' & mediumIndex != -1) {
+        //         if ((i-mediumIndex)%2 != 1) {
+        //             //如果里面只包了单数个字符那肯定不合格
+        //             return false;
+        //         }
+        //         if (mediumClosed == false) {
+        //             if (mediumIndex == i-1) {
+        //                 //两个括号在一起
+        //                 mediumClosed = true;
+        //                 mediumIndex = -1;
+        //             }
+        //             else {//两个括号不在一起，判断是不是大包小
+        //                 System.out.println("smallClosed: " + smallClosed);
+        //                 System.out.println("largeClosed: " + largeClosed);
+        //                 if (smallClosed == false | largeClosed == false & i == s.length() - 1) {
+        //                     return false;
+        //                 }
+        //                 mediumClosed = true;
+        //                 mediumIndex = -1;
+        //             }
+        //         }
+        //         else{
+        //             return false;
+        //         }
+        //     }
+        //     if (s.charAt(i) == '}' & largeIndex != -1) {
+        //         if ((i-largeIndex)%2 != 1) {
+        //             //如果里面只包了单数个字符那肯定不合格
+        //             return false;
+        //         }
+        //         if (largeClosed == false) {
+        //             if (largeIndex == i-1) {
+        //                 //两个括号在一起
+        //                 largeClosed = true;
+        //                 largeIndex = -1;
+        //             }
+        //             else {//两个括号不在一起，判断是不是大包小
+        //                 System.out.println("smallClosed: " + smallClosed);
+        //                 System.out.println("mediumClosed: " + mediumClosed);
+        //                 if (smallClosed == false | mediumClosed == false & i == s.length() - 1) {
+        //                     return false;
+        //                 }
+        //                 largeClosed = true;
+        //                 largeIndex = -1;
+        //             }
+        //         }
+        //         else {
+        //             return false;
+        //         }
+        //     }
+        // }
+        // if (smallClosed & mediumClosed & largeClosed & smallIndex == -1 & mediumIndex == -1 & largeIndex == -1) {
+        //     return true;
+        // }
+        // else {
+        //     return false;
+        // }
+        String tempStr = s;
+        for (int k=0; k<s.length();k++) {
+            tempStr = tempStr.replace("()","");
+            tempStr = tempStr.replace("[]","");
+            tempStr = tempStr.replace("{}","");
+        }
+        if (tempStr == "") {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+}
