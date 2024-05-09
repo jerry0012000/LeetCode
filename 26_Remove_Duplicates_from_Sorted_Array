@@ -1,0 +1,27 @@
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        // int[] emptyArray = new int[0];
+        // System.out.println(emptyArray);
+        // return emptyArray;
+        if (nums.length == 0) {
+            return 0;
+        }
+        int num = -10000;
+        int[] expectedNums = new int[nums.length];
+        int index = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != num) {
+                expectedNums[index] = nums[i];
+                num = nums[i];
+                index ++;
+            }
+        }
+        System.out.println("nums: " + Arrays.toString(nums));
+        for (int j = 0; j < nums.length; j++) {
+            nums[j] = expectedNums[j];
+        }
+        System.out.println("expectedNums: " + Arrays.toString(expectedNums));
+        System.out.println("index: " + index);
+        return index;
+    }
+}
