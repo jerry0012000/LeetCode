@@ -5,7 +5,7 @@ class Solution:
         if sum(nums) % 2 != 0:
             return False
         else:
-            target = sum(nums)/s
+            target = sum(nums)/2
             # sorted_nums = sorted(nums,reverse=True)
             # print(sorted_nums)
             # for i in range(len(sorted_nums)):
